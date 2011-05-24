@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+		<title>Bugdroid Rush!</title>
+		<link type="text/css" rel="stylesheet" href="bugdroid_rush.css">
+		<script type="text/javascript" src="bugdroid_rush.js"></script>
+	</head>
+	<body onload="handleLoad()">
+		<header>
+			<h1>
+				Bugdroid Rush!
+			</h1>
+		</header>
+		<article>
+			<aside>
+				<h2>
+					Story
+				</h2>
+				<p>
+					Oh, no!
+					The sign for Google I/O has broken into scattered pieces!
+					Help Bugdroid collect them in proper order as quick as you can.
+					All the excited attendees are relying on you to make the best conference possible!
+				</p>
+			</aside>
+			<aside>
+				<h2>
+					Instructions
+				</h2>
+				<p>
+					Move your mouse in the box with Bugdroid to each part of the scattered Google I/O logo in order.
+					Move as fast as you can, but be careful!
+					Hitting the wrong piece, walls, or attendees will scatter the pieces again.
+					Try for the best time!
+				</p>
+			</aside>
+			<section>
+				<h2>
+					Game
+				</h2>
+				<p>
+					<canvas id="gameCanvas" width="512" height="512"
+						onmousemove="handleMouseMove(event)" onclick="handleClick()"
+						onmouseover="handleMouseOver()" onmouseout="handleMouseOut()" >
+					</canvas>
+				</p>
+				<h3 id="gameStatus">
+
+				</h3>
+				<form>
+					<input type="checkbox" checked="checked"
+						onclick="setSoundAndMusicEnabled(this.checked)" id="soundAndMusicCheckbox" />
+					<label for="soundAndMusicCheckbox">Play sound and music</label>
+				</form>
+			</section>
+			<section>
+				<h2>
+					Stats
+				</h2>
+				<p id="lowestTime"></p>
+				<p id="highestLevel"></p>
+			</section>
+		</article>
+		<footer>
+			<h2>
+				Credits
+			</h2>
+			<p>
+				HTML, JS, CSS, JSON, CRX, and image/sound editing by <a href="http://nanek.name/">Lance Nanek</a> for
+				<a href="https://sites.google.com/site/lastcallforio2011/Home">Last Call for Google I/O contest</a>, Games Round II.
+			</p>
+			<p>
+				Logo from Google I/O web site. Other images from
+				Android Project's <a href="http://code.google.com/p/apps-for-android/">SpriteMethodTest</a> open source game rendering demo.
+				License for the latter:
+			</p>
+			<blockquote>
+				Portions of this page are modifications based on work created and <a href="http://code.google.com/policies.html">shared by the Android Open Source Project</a> and used according to terms described in the <a href="http://creativecommons.org/licenses/by/2.5/">Creative Commons 2.5 Attribution License</a>.
+			</blockquote>
+			<p>
+				Thanks for Bugdroid's most excellent appearance! Or Ando-kun as Chris Pruett would say.
+			</p>
+			<p>
+				Sounds by willc2_45220, Dolfeus, djduppy, suzenako, and Opossum at <a href="http://www.freesound.org/">freesound.org</a>.
+			</p>
+			<p>
+				In-browser gaming awesomeness thanks to Google Chrome and HTML 5's canvas element, Audio API, and Local Storage API!
+			</p>
+			<p id="gameImages">
+				<img src="background.png" id="background" />
+				<img src="logo.png" id="logo" />
+				<img src="skate1_color0.png" id="skate1_color0" />
+				<img src="skate2_color0.png" id="skate2_color0" />
+				<img src="skate3_color0.png" id="skate3_color0" />
+
+				<img src="skate1_color1.png" id="skate1_color1" />
+				<img src="skate2_color1.png" id="skate2_color1" />
+				<img src="skate3_color1.png" id="skate3_color1" />
+
+				<img src="skate1_color2.png" id="skate1_color2" />
+				<img src="skate2_color2.png" id="skate2_color2" />
+				<img src="skate3_color2.png" id="skate3_color2" />
+
+				<img src="skate1_color3.png" id="skate1_color3" />
+				<img src="skate2_color3.png" id="skate2_color3" />
+				<img src="skate3_color3.png" id="skate3_color3" />
+
+				<img src="logo_index0_rotation0.png" id="logo_index0_rotation0" />
+				<img src="logo_index1_rotation0.png" id="logo_index1_rotation0" />
+				<img src="logo_index2_rotation0.png" id="logo_index2_rotation0" />
+				<img src="logo_index3_rotation0.png" id="logo_index3_rotation0" />
+				<img src="logo_index4_rotation0.png" id="logo_index4_rotation0" />
+				<img src="logo_index5_rotation0.png" id="logo_index5_rotation0" />
+				<img src="logo_index6_rotation0.png" id="logo_index6_rotation0" />
+
+				<img src="logo_index0_rotation1.png" id="logo_index0_rotation1" />
+				<img src="logo_index1_rotation1.png" id="logo_index1_rotation1" />
+				<img src="logo_index2_rotation1.png" id="logo_index2_rotation1" />
+				<img src="logo_index3_rotation1.png" id="logo_index3_rotation1" />
+				<img src="logo_index4_rotation1.png" id="logo_index4_rotation1" />
+				<img src="logo_index5_rotation1.png" id="logo_index5_rotation1" />
+				<img src="logo_index6_rotation1.png" id="logo_index6_rotation1" />
+
+				<img src="logo_index0_rotation2.png" id="logo_index0_rotation2" />
+				<img src="logo_index1_rotation2.png" id="logo_index1_rotation2" />
+				<img src="logo_index2_rotation2.png" id="logo_index2_rotation2" />
+				<img src="logo_index3_rotation2.png" id="logo_index3_rotation2" />
+				<img src="logo_index4_rotation2.png" id="logo_index4_rotation2" />
+				<img src="logo_index5_rotation2.png" id="logo_index5_rotation2" />
+				<img src="logo_index6_rotation2.png" id="logo_index6_rotation2" />
+
+				<img src="logo_index0_rotation3.png" id="logo_index0_rotation3" />
+				<img src="logo_index1_rotation3.png" id="logo_index1_rotation3" />
+				<img src="logo_index2_rotation3.png" id="logo_index2_rotation3" />
+				<img src="logo_index3_rotation3.png" id="logo_index3_rotation3" />
+				<img src="logo_index4_rotation3.png" id="logo_index4_rotation3" />
+				<img src="logo_index5_rotation3.png" id="logo_index5_rotation3" />
+				<img src="logo_index6_rotation3.png" id="logo_index6_rotation3" />
+			</p>
+		</footer>
+	</body>
+</html>
